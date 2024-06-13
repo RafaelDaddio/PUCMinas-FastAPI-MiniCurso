@@ -13,7 +13,13 @@ service = ClienteService()
 @router.post('/cliente', response_model=ClienteResponse, status_code=201)
 async def create(payload: ClienteCreate):
     """
-    Documentacao...
+    ## Cria um cliente.
+
+    ### Argumentos:
+     > payload (ClienteCreate)  
+
+    ### Retorna:
+     > ClienteResponse  
     """
     return await service.create(payload)
 
@@ -21,6 +27,10 @@ async def create(payload: ClienteCreate):
 @router.get('/cliente', response_model=List[ClienteResponse], status_code=200)
 async def get_all():
     """
+    ## Recupera todos os clientes.
+
+    ### Retorna:
+     > List[ClienteResponse]
     """
     return await service.get_all()
 
@@ -28,6 +38,16 @@ async def get_all():
 @router.get('/cliente/{id}', response_model=ClienteResponse, status_code=200)
 async def get_by_id(id: int):
     """
+    ## Recupera um cliente por id.
+
+    ### Argumentos:
+     > id (int)   
+
+    ### Retorna:
+     > ClienteResponse
+
+    ### Exceções:
+     > Código 404: caso o cliente nao exista.
     """
     try:
         return await service.get_by_id(id)
