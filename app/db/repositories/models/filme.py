@@ -11,3 +11,4 @@ class Filme(BaseMixin, Base):
     ano_lancamento: Mapped[int]
     duracao: Mapped[int]
     preco: Mapped[float]
+    alugado: Mapped[bool] = mapped_column(default=False)
