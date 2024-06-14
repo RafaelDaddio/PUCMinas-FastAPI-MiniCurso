@@ -20,6 +20,7 @@ class FilmeCreate(BaseSchema):
 
 class FilmeResponse(FilmeCreate):
     id: int
+    alugado: bool
     metadatetime: MetaDatetimeSchema
 
     class Config:
@@ -30,6 +31,7 @@ class FilmeResponse(FilmeCreate):
                 'ano_lancamento': 2001,
                 'duracao': 178,
                 'preco': 10.50,
+                'alugado': False,
                 'metadatetime': docs_example
             }
         }
