@@ -3,3 +3,6 @@ class OperacaoInvalidaException(Exception):
 
 class DivisaoPorZeroException(Exception):
     pass
+
+class RecursoNaoEncontradoException(Exception):
+    pass

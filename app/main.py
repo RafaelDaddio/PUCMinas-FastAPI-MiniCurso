@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .views import create_routes
 from .db.engine import create_all, drop_all
+from .db.repositories import models
 
 app = FastAPI(
     title="FastAPI mini curso",
@@ -23,4 +24,4 @@ create_routes(app)
 async def startup():
     pass
     # await drop_all()
-    # await create_all() 
+    await create_all() 
