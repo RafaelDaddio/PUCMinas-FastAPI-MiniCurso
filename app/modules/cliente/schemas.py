@@ -15,6 +15,21 @@ class ClienteCreate(BaseSchema):
             }
         }
 
+class ClienteUpdate(BaseSchema):
+    nome: str | None
+    cpf: str | None
+    ano_nascimento: int | None
+    saldo: float | None
+
+    class Config:
+        schema_extra = {
+            'example': {
+                'nome': 'Bilbo Baggins',
+                'cpf': '111.111.111-11',
+                'ano_nascimento': 2000,
+                'saldo': 0.0
+            }
+        }
 
 class ClienteResponse(ClienteCreate):
     id: int

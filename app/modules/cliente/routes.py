@@ -1,9 +1,9 @@
 from typing import List
 from fastapi import APIRouter, HTTPException
 
-from app.modules.cliente.schemas import ClienteCreate, ClienteResponse
+from app.modules.cliente.schemas import ClienteCreate, ClienteResponse, ClienteUpdate
 from app.modules.cliente.services import ClienteService
-from app.utils.exceptions import RecursoNaoEncontradoException
+from app.utils.exceptions import OperacaoInvalidaException, RecursoNaoEncontradoException
 
 
 router = APIRouter()
@@ -53,3 +53,26 @@ async def get_by_id(id: int):
         return await service.get_by_id(id)
     except RecursoNaoEncontradoException as error:
         raise HTTPException(status_code=404, detail=str(error))
+
+
+@router.delete('/cliente/{id}', response_model=ClienteResponse, status_code=200)
+async def delete_by_id(id: int):
+    """
+    """
+    try:
+        return await service.delete_by_id(id)
+    except RecursoNaoEncontradoException as error:
+        raise HTTPException(status_code=404, detail=str(error))
+
+
+@router.patch('/cliente/{id}', response_model=ClienteResponse, status_code=200)
+async def update_by_id(id:int , payload: ClienteUpdate):
+    """
+    """
+    try:
+        return await service.update_by_id(id, payload)
+    except RecursoNaoEncontradoException as error:
+        raise HTTPException(status_code=404, detail=str(error))
+    except OperacaoInvalidaException as error:
+        raise HTTPException(status_code=422, detail=str(error))
+    
